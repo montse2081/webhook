@@ -20,17 +20,10 @@ restService.post("/echo", function(req, res) {
   console.log(speech);
   return res.json({
 
-  "fulfillmentText": speech,
-  "fulfillmentMessages": [
-    {
-      "text": {
-        "text": [speech]
-      }
-    }
-  ],
-  "source": "<webhookpn1>"
-
-
+  "status": speech,
+  "short_id": "ok",
+  "message": "OK",
+  "reference": "mi-id-123"
   });
 });
 
