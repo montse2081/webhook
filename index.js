@@ -16,12 +16,12 @@ restService.use(bodyParser.json());
 restService.post("/echo", function(req, res) {
   console.log("iniciando server");
   var speech =
-   req.body;
+   req.body.short_id;
   console.log(speech);
   return res.json({
 
   "status": "success",
-  "short_id": "ok",
+  "short_id": speech,
   "message": "OK",
   "reference": "mi-id-123"
   });
