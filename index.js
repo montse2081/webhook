@@ -20,7 +20,7 @@ restService.post("/echo", function(req, res) {
   console.log(speech);
   return res.json({
 
-  "status": speech,
+  "status": "success",
   "short_id": "ok",
   "message": "OK",
   "reference": "mi-id-123"
