@@ -17,12 +17,27 @@ restService.post("/echo", function(req, res) {
   console.log("iniciando server");
   var speech =
    req.body.short_id;
-  console.log(speech);
+  var charge = req.body.type;
+  var result = req.body.id;
+  switch (charge){
+      case "charge.success":
+            result = "pagado";
+            break;
+        case "charge.pending":
+            result = "pendiente";
+            break;
+        case "charge.expired":
+            result = "expirado";
+            break;
+      default:
+      result = "en espera";
+  }
+  
   return res.json({
 
   "status": "success",
   "short_id": speech,
-  "message": "OK",
+  "message": result,
   "reference": "mi-id-123"
   });
 });
