@@ -1,38 +1,33 @@
-"use strict";
+var Hapi = require('hapi');
 
-const express = require("express");
-const bodyParser = require("body-parser");
-
-const restService = express();
-
-restService.use(
-  bodyParser.urlencoded({
-    extended: true
-  })
-);
-
-restService.use(bodyParser.json());
-
-restService.post("/echo", function(req, res) {
-  var speech =
-    req.body;
-  return res.json({
-
-  "fulfillmentText": speech,
-  "fulfillmentMessages": [
-    {
-      "text": {
-        "text": [speech]
-      }
-    }
-  ],
-  "source": "<webhookpn1>"
-
-
-  });
+// Create a server with a host and port
+var server = new Hapi.Server();
+server.connection({ 
+    host: 'localhost', 
+    port: 8000 
 });
 
+// Add the route to receive a webhook request
+server.route({
+    method: 'GET',
+    path:'/webhook-receiver',
+    handler: function (request, reply) {
+        reply().code(204);
+        setImmediate(processRequest);
+    }
+});
 
-restService.listen(process.env.PORT || 8000, function() {
-  console.log("Server up and listening");
+// Function to do busy work
+function processRequest() {
+    console.log('connection should have closed');
+    console.log('processing start');
+
+    for (var i = 0; i < 5000000000; i++) {}
+
+    console.log('processing done');
+}
+
+// Start the server
+server.start(function () {
+    console.log('Server running at:', server.info.uri);
 });
