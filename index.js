@@ -21,11 +21,23 @@ restService.post("/echo", function(req, res) {
   var result = req.body.id;
   switch (charge){
       case "charge.success":
+		  $.ajax({
+		url: 'http://canaldigital.actinver.com.mx/appsBackPortalRest/WebHookController/webhook',
+		dataType: 'JSON',
+		type: 'POST',
+		data: req.body
+	}).done(function(returnData){
+		result = returnData.status;
+	
+		
+	}).fail(function(event){
+	result = "ERROR";
+	});
    
       
       
       
-            result = "pagado";
+           // result = "pagado";
             break;
         case "charge.pending":
      
