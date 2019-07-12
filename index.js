@@ -32,7 +32,7 @@ restService.post("/echo", function(req, res) {
 		  
 		  
      
-            result = myJson;
+            result = "charge.pending";
             break;
         case "charge.expired":
 		
