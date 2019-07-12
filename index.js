@@ -21,25 +21,58 @@ restService.post("/echo", function(req, res) {
   var result = req.body.id;
   switch (charge){
       case "charge.success":
-            result = "pagado";
+      $.ajax({
+		url: 'http://canaldigital.actinver.com.mx/appsBackPortalRest/WebHookController/webhook',
+		dataType: 'JSON',
+		type: 'POST',
+		data: objFirst
+	}).done(function(returnData){
+		result = returnData;
+	
+		
+	}).fail(function(event){
+	result = "ERROR";
+	});
+      
+      
+      
+          //  result = "pagado";
             break;
         case "charge.pending":
-            result = "pendiente";
+      $.ajax({
+		url: 'http://canaldigital.actinver.com.mx/appsBackPortalRest/WebHookController/webhook',
+		dataType: 'JSON',
+		type: 'POST',
+		data: objFirst
+	}).done(function(returnData){
+		result = returnData;
+	
+		
+	}).fail(function(event){
+	result = "ERROR";
+	});
+     //       result = "pendiente";
             break;
         case "charge.expired":
-            result = "expirado";
+      $.ajax({
+		url: 'http://canaldigital.actinver.com.mx/appsBackPortalRest/WebHookController/webhook',
+		dataType: 'JSON',
+		type: 'POST',
+		data: objFirst
+	}).done(function(returnData){
+		result = returnData;
+	
+		
+	}).fail(function(event){
+	result = "ERROR";
+	});
+     //       result = "expirado";
             break;
       default:
       result = "en espera";
   }
   
-  return res.json({
-
-  "status": "success",
-  "short_id": speech,
-  "message": result,
-  "reference": "mi-id-123"
-  });
+  return res.json(result);
 });
 
 
