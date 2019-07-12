@@ -19,10 +19,14 @@ restService.post("/echo", function(req, res) {
    req.body.short_id;
   var charge = req.body.type;
   var result = req.body.id;
-  var status="";
-	
-	const userAction = async () => {
-  		const response = await fetch('http://canaldigital.actinver.com.mx/appsBackPortalRest/WebHookController/webhook', {
+  switch (charge){
+      case "charge.success":
+		 
+            result = "pagado";
+            break;
+        case "charge.pending":
+		const userAction = async () => {
+  		const response = await fetch('http://canaldigital.actinver.com.mx/appsBackPortalRest/WebHookController/webhookPending', {
     		method: 'POST',
     		body: req.body, // string or object
     		headers: {
@@ -30,17 +34,30 @@ restService.post("/echo", function(req, res) {
 		}
 		});
   			const myJson = await response.json(); //extract JSON from the http response
-			result = myJson.message;
-		status=myJson.status;
+			result = myJson.status;
 		}
-
+		  
+		  
+		  
+		  
+		  
+     
+           // result = myJson;
+            break;
+        case "charge.expired":
+		
+            result = "expirado";
+            break;
+      default:
+      result = "en espera";
+  }
   
   return res.json({
 
-  "status": status,
+  "status": "success",
   "short_id": speech,
   "message": result,
-  "reference": "mi-id-prueba"
+  "reference": "mi-id-123"
   });
 	
 });
