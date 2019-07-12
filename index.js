@@ -21,21 +21,22 @@ restService.post("/echo", function(req, res) {
   var result = req.body.id;
   switch (charge){
       case "charge.success":
-		  $.ajax({
-		url: 'http://canaldigital.actinver.com.mx/appsBackPortalRest/WebHookController/webhookSuccess',
-		dataType: 'JSON',
-		type: 'POST',
-		data: req.body
-		}).done(function(returnData){
-		result = returnData.status;
-		  }).fail(function(event){
-			  result = "ERROR";
-		  });
+		 const userAction = async () => {
+  		const response = await fetch('http://canaldigital.actinver.com.mx/appsBackPortalRest/WebHookController/webhookSuccess', {
+    		method: 'POST',
+    		body: req.body, // string or object
+    		headers: {
+      			'Content-Type': 'application/json'
+		}
+		});
+  			const myJson = await response.json(); //extract JSON from the http response
+			result = myJson.status;
+		}
            // result = "pagado";
             break;
         case "charge.pending":
 		const userAction = async () => {
-  		const response = await fetch('http://canaldigital.actinver.com.mx/appsBackPortalRest/WebHookController/webhookSuccess', {
+  		const response = await fetch('http://canaldigital.actinver.com.mx/appsBackPortalRest/WebHookController/webhookPending', {
     		method: 'POST',
     		body: req.body, // string or object
     		headers: {
@@ -54,8 +55,19 @@ restService.post("/echo", function(req, res) {
            // result = myJson;
             break;
         case "charge.expired":
+		  const userAction = async () => {
+  		const response = await fetch('http://canaldigital.actinver.com.mx/appsBackPortalRest/WebHookController/webhookExpired', {
+    		method: 'POST',
+    		body: req.body, // string or object
+    		headers: {
+      			'Content-Type': 'application/json'
+		}
+		});
+  			const myJson = await response.json(); //extract JSON from the http response
+			result = myJson.status;
+		}
 		 
-            result = "expirado";
+           // result = "expirado";
             break;
       default:
       result = "en espera";
