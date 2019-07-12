@@ -26,22 +26,12 @@ restService.post("/echo", function(req, res) {
             result = "success";
             break;
         case "charge.pending":
-		 const response = await fetch('http://canaldigital.actinver.com.mx/appsBackPortalRest/WebHookController/webhookPending', {
-    		method: 'POST',
-    		body: req.body, // string or object
-    		headers: {
-      			'Content-Type': 'application/json'
-		}
-		});
-		  result = response;
-  			//const myJson = await response.json(); //extract JSON from the http response
-			//result = myJson.status;
-		}
+		
 		  
 		  
 		  
 		  
-            //result = "pending";
+           result = "pending";
             break;
         case "charge.expired":
 		
