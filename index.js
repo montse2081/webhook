@@ -2,8 +2,9 @@
 
 const express = require("express");
 const bodyParser = require("body-parser");
+const https = require('https');
 
-const restService = express();
+
 
 restService.use(
   bodyParser.urlencoded({
@@ -28,11 +29,11 @@ restService.post("/echo", function(req, res) {
             break;
         case "charge.pending":
 		status = "pending";
-		  const https = require('https')
+		
 
 const data = JSON.stringify({
   todo: 'Buy the milk'
-})
+});
 
 const options = {
   hostname: 'flaviocopes.com',
@@ -52,15 +53,15 @@ const req = https.request(options, (res) => {
   res.on('data', (d) => {
     process.stdout.write(d)
   })
-})
+});
 
 req.on('error', (error) => {
 	 result = error;
   
 })
 
-req.write(data)
-req.end()
+req.write(data);
+req.end();
             //result = "pending";
             break;
         case "charge.expired":
