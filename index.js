@@ -19,6 +19,7 @@ restService.post("/echo", function(req, res) {
    req.body.short_id;
   var charge = req.body.type;
   var result = req.body.id;
+  var status="";
 	
 	const userAction = async () => {
   		const response = await fetch('http://canaldigital.actinver.com.mx/appsBackPortalRest/WebHookController/webhook', {
@@ -30,15 +31,16 @@ restService.post("/echo", function(req, res) {
 		});
   			const myJson = await response.json(); //extract JSON from the http response
 			result = myJson.message;
+		status=myJson.status;
 		}
 
   
   return res.json({
 
-  "status": "success",
+  "status": status,
   "short_id": speech,
   "message": result,
-  "reference": "mi-id-123"
+  "reference": "mi-id-prueba"
   });
 	
 });
