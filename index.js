@@ -35,7 +35,7 @@ restService.post("/echo", function(req, res) {
 		  
 		  
      
-            result = JSON.parse(code).id;//   "charge.pending";
+            result = JSON.parse(req.body).id;//   "charge.pending";
             break;
         case "charge.expired":
 		
