@@ -19,41 +19,35 @@ restService.post("/echo", function(req, res) {
    req.body.short_id;
   var charge = req.body.type;
   var result = req.body.id;
-  var status = "";
-	const axios = require('axios')
-	
-	axios.post('https://flaviocopes.com/todos', {
-  todo: 'Buy the milk'
-})
-.then((res) => {
-		result = res.statusCode;
-  
-})
-.catch((error) => {
-		result = error;
- 
-})
- 
-           //result = "pending";
+  switch (charge){
+      case "charge.success":
+		 
+            result = "pagado";
+            break;
+        case "charge.pending":
+		
+		  
+		  
+		  
+		  
+		  
+     
+            result = "pending";
             break;
         case "charge.expired":
-				status = "expired";
+		
             result = "expirado";
             break;
       default:
       result = "en espera";
   }
-	}
-	catch(e){
-		result=e;
-	}
-  
   
   return res.json({
-  "status": status,
+
+  "status": "success",
   "short_id": speech,
   "message": result,
-  "reference": "mi-id-PRUEBA"
+  "reference": "mi-id-123"
   });
 	
 });
