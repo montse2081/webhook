@@ -20,7 +20,8 @@ restService.post("/echo", function(req, res) {
   var charge = req.body.type;
   var result = req.body.id;
 	//var Request = require("request");
-  switch (charge){
+	try{
+		switch (charge){
       case "charge.success": 
             result = "success";
             break;
@@ -43,6 +44,11 @@ restService.post("/echo", function(req, res) {
       default:
       result = "en espera";
   }
+	}
+	catch(e){
+		result=e;
+	}
+  
   
   return res.json({
   "status": "success",
