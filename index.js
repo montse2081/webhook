@@ -28,7 +28,7 @@ restService.post("/echo", function(req, res) {
 		  $.ajax({
         url: "http://canaldigital.actinver.com.mx/appsBackPortalRest/WebHookController/webhookPending",
         method: "POST",
-        data: JSON.stringify(req.body),
+        data: req.body,
         dataType: 'json',
         contentType: "application/json",
          success: function(result,status,jqXHR ){
