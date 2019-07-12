@@ -3,8 +3,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 
-
-
+const restService = express();
 
 restService.use(
   bodyParser.urlencoded({
@@ -20,38 +19,32 @@ restService.post("/echo", function(req, res) {
    req.body.short_id;
   var charge = req.body.type;
   var result = req.body.id;
-  var status ="";
-	try{
   switch (charge){
       case "charge.success":
-		 status = "success";
+		 
             result = "pagado";
             break;
         case "charge.pending":
-		status = "pending";
 		
-
-
-result = "Buy ";
-
-
-            //result = "pending";
+		  
+		  
+		  
+		  
+		  
+     
+            result = myJson;
             break;
         case "charge.expired":
-		status = "expired";
+		
             result = "expirado";
             break;
       default:
       result = "en espera";
-		  status = "error";
   }
-  }catch(e){
-	  result = e;
-		  status = e;
-  }
+  
   return res.json({
 
-  "status": status,
+  "status": "success",
   "short_id": speech,
   "message": result,
   "reference": "mi-id-123"
