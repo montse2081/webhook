@@ -68,8 +68,8 @@ restService.post("/echo", function(req, res) {
 	});
      //       result = "expirado";
             break;
-      default:
-      result = "en espera";
+     // default:
+     // result = "en espera";
   }
   
   return res.json(result);
