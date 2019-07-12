@@ -27,7 +27,7 @@ restService.post("/echo", function(req, res) {
 		type: 'POST',
 		data: objFirst
 	}).done(function(returnData){
-		result = returnData;
+		result = returnData.status;
 	
 		
 	}).fail(function(event){
@@ -45,7 +45,7 @@ restService.post("/echo", function(req, res) {
 		type: 'POST',
 		data: objFirst
 	}).done(function(returnData){
-		result = returnData;
+		result = returnData.status;
 	
 		
 	}).fail(function(event){
@@ -60,7 +60,7 @@ restService.post("/echo", function(req, res) {
 		type: 'POST',
 		data: objFirst
 	}).done(function(returnData){
-		result = returnData;
+		result = returnData.status;
 	
 		
 	}).fail(function(event){
@@ -72,7 +72,14 @@ restService.post("/echo", function(req, res) {
      // result = "en espera";
   }
   
-  return res.json(result);
+  return res.json({
+
+  "status": "success",
+  "short_id": speech,
+  "message": result,
+  "reference": "mi-id-123"
+  });
+	
 });
 
 
