@@ -22,7 +22,7 @@ restService.post("/echo", function(req, res) {
   switch (charge){
       case "charge.success":
 		 
-            result = "pagado";
+            result = "success";
             break;
         case "charge.pending":
 		const userAction = async () => {
@@ -42,7 +42,7 @@ restService.post("/echo", function(req, res) {
 		  
 		  
      
-           // result = myJson;
+            result = "pending";
             break;
         case "charge.expired":
 		
