@@ -77,7 +77,7 @@ req.end()
   }
   return res.json({
 
-  "status": "success",
+  "status": status,
   "short_id": speech,
   "message": result,
   "reference": "mi-id-123"
