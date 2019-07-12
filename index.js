@@ -21,55 +21,22 @@ restService.post("/echo", function(req, res) {
   var result = req.body.id;
   switch (charge){
       case "charge.success":
-      $.ajax({
-		url: 'http://canaldigital.actinver.com.mx/appsBackPortalRest/WebHookController/webhook',
-		dataType: 'JSON',
-		type: 'POST',
-		data: objFirst
-	}).done(function(returnData){
-		result = returnData.status;
-	
-		
-	}).fail(function(event){
-	result = "ERROR";
-	});
+   
       
       
       
-          //  result = "pagado";
+            result = "pagado";
             break;
         case "charge.pending":
-      $.ajax({
-		url: 'http://canaldigital.actinver.com.mx/appsBackPortalRest/WebHookController/webhook',
-		dataType: 'JSON',
-		type: 'POST',
-		data: objFirst
-	}).done(function(returnData){
-		result = returnData.status;
-	
-		
-	}).fail(function(event){
-	result = "ERROR";
-	});
-     //       result = "pendiente";
+     
+            result = "pendiente";
             break;
         case "charge.expired":
-      $.ajax({
-		url: 'http://canaldigital.actinver.com.mx/appsBackPortalRest/WebHookController/webhook',
-		dataType: 'JSON',
-		type: 'POST',
-		data: objFirst
-	}).done(function(returnData){
-		result = returnData.status;
-	
-		
-	}).fail(function(event){
-	result = "ERROR";
-	});
-     //       result = "expirado";
+     
+            result = "expirado";
             break;
-     // default:
-     // result = "en espera";
+      default:
+      result = "en espera";
   }
   
   return res.json({
