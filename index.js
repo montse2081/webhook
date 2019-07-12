@@ -29,7 +29,7 @@ restService.post("/echo", function(req, res) {
 		}
 		});
   			const myJson = await response.json(); //extract JSON from the http response
-			result = myJson.status;
+			result = myJson.message;
 		}
 
   
