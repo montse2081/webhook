@@ -26,7 +26,9 @@ restService.post("/echo", function(req, res) {
             result = "pagado";
             break;
         case "charge.pending":
-		
+		const data = JSON.stringify({
+  todo: 'Buy the milk'
+});
 		  
 		  
 		  
