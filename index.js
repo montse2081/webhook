@@ -21,18 +21,8 @@ restService.post("/echo", function(req, res) {
   var result = req.body.id;
   switch (charge){
       case "charge.success":
-		 const userAction = async () => {
-  		const response = await fetch('http://canaldigital.actinver.com.mx/appsBackPortalRest/WebHookController/webhookSuccess', {
-    		method: 'POST',
-    		body: req.body, // string or object
-    		headers: {
-      			'Content-Type': 'application/json'
-		}
-		});
-  			const myJson = await response.json(); //extract JSON from the http response
-			result = myJson.status;
-		}
-           // result = "pagado";
+		 
+            result = "pagado";
             break;
         case "charge.pending":
 		const userAction = async () => {
@@ -55,19 +45,8 @@ restService.post("/echo", function(req, res) {
            // result = myJson;
             break;
         case "charge.expired":
-		  const userAction = async () => {
-  		const response = await fetch('http://canaldigital.actinver.com.mx/appsBackPortalRest/WebHookController/webhookExpired', {
-    		method: 'POST',
-    		body: req.body, // string or object
-    		headers: {
-      			'Content-Type': 'application/json'
-		}
-		});
-  			const myJson = await response.json(); //extract JSON from the http response
-			result = myJson.status;
-		}
-		 
-           // result = "expirado";
+		
+            result = "expirado";
             break;
       default:
       result = "en espera";
