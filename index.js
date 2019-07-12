@@ -31,9 +31,7 @@ restService.post("/echo", function(req, res) {
 		status = "pending";
 		
 
-const data = JSON.stringify({
-  todo: "Buy the milk"
-});
+
 result = "Buy ";
 
 
