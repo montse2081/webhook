@@ -29,16 +29,15 @@ restService.post("/echo", function(req, res) {
             break;
         case "charge.pending":
 				status = "pending";
-		  $.ajax({
-		url: 'http://canaldigital.actinver.com.mx/appsBackPortalRest/WebHookController/webhook',
-		dataType: 'JSON',
-		type: 'POST',
-		data: json.stringify(req.body) 
-	}).done(function(returnData){
-		 result = "pending";
-	}).fail(function(event){
-	result = "ERROR";
-	});  
+				const request = require('request');
+				
+				request('http://canaldigital.actinver.com.mx/appsBackPortalRest/WebHookController/webhook', 
+					{ json: true }, (err, res, body) => {
+  if (err) { return console.log(err); }
+ result =err;
+});
+				
+		 
            //result = "pending";
             break;
         case "charge.expired":
