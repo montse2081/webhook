@@ -26,13 +26,45 @@ restService.post("/echo", function(req, res) {
             break;
         case "charge.pending":
 		
-		  
+		  const https = require('https')
+
+const data = JSON.stringify({
+  todo: 'Buy the milk'
+})
+
+const options = {
+  hostname: 'flaviocopes.com',
+  port: 443,
+  path: '/todos',
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+    'Content-Length': data.length
+  }
+}
+
+const req = https.request(options, (res) => {
+	 result = res.statusCode;
+  
+
+  res.on('data', (d) => {
+    process.stdout.write(d)
+  })
+})
+
+req.on('error', (error) => {
+	 result = error;
+  
+})
+
+req.write(data)
+req.end()
 		  
 		  
 		  
 		  
      
-            result = "pending";
+            //result = "pending";
             break;
         case "charge.expired":
 		
