@@ -19,32 +19,28 @@ restService.post("/echo", function(req, res) {
    req.body.short_id;
   var charge = req.body.type;
   var result = req.body.id;
+	var Request = require("request");
   switch (charge){
       case "charge.success":
 		 
             result = "success";
             break;
         case "charge.pending":
-		   $.ajax({
-    url: 'http://canaldigital.actinver.com.mx/appsBackPortalRest/WebHookController/webhookPending',
-    method: 'POST',
-    type:'POST',
-    contentType: 'application/json',
-			    data: req.body,
-    success: function(response){
-       result = "pending";
-    },
-    error: function( jqXHR,textStatus, errorThrown){
-       result = "pending";
+		  Request.post({
+    "headers": { "content-type": "application/json" },
+    "url": "http://canaldigital.actinver.com.mx/appsBackPortalRest/WebHookController/webhookPending",
+    "body": JSON.stringify(req.body)
+}, (error, response, body) => {
+    if(error) {
+        result = "pending";
     }
-  });   
+    result = "pending";
+});
 		  
 		  
-		 
 		  
 		  
 		  
-     
             //result = "pending";
             break;
         case "charge.expired":
