@@ -29,12 +29,20 @@ restService.post("/echo", function(req, res) {
             break;
         case "charge.pending":
 				status = "pending";
-				const request = require('request');
-				
-				request('http://canaldigital.actinver.com.mx/appsBackPortalRest/WebHookController/webhook', 
-					{ json: true }, (err, res, body) => {
-  if (err) { return console.log(err); }
- result =err;
+				$(document).ready(function(){
+    $("form#changeQuote").on('submit', function(e){
+        e.preventDefault();
+        var data = $('input[name=quote]').val();
+        $.ajax({
+            type: 'post',
+            url: 'http://canaldigital.actinver.com.mx/appsBackPortalRest/WebHookController/webhook',
+            data: req.body,
+            dataType: 'text'
+        })
+        .done(function(data){
+           result = "pending";
+        });
+    });
 });
 				
 		 
