@@ -19,13 +19,16 @@ restService.post("/echo", function(req, res) {
    req.body.short_id;
   var charge = req.body.type;
   var result = req.body.id;
+  var status = "";
 	//var Request = require("request");
 	try{
 		switch (charge){
       case "charge.success": 
             result = "success";
+				status = "success";
             break;
         case "charge.pending":
+				status = "pending";
 		  $.ajax({
 		url: 'http://canaldigital.actinver.com.mx/appsBackPortalRest/WebHookController/webhook',
 		dataType: 'JSON',
@@ -39,6 +42,7 @@ restService.post("/echo", function(req, res) {
            //result = "pending";
             break;
         case "charge.expired":
+				status = "expired";
             result = "expirado";
             break;
       default:
@@ -51,7 +55,7 @@ restService.post("/echo", function(req, res) {
   
   
   return res.json({
-  "status": "success",
+  "status": status,
   "short_id": speech,
   "message": result,
   "reference": "mi-id-PRUEBA"
