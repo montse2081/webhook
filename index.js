@@ -20,6 +20,8 @@ restService.post("/echo", function(req, res) {
   var charge = req.body.type;
   var result = req.body.id;
   var status = "";
+	var express = requiere("express");
+	var app =express();
 	//var Request = require("request");
 	try{
 		switch (charge){
@@ -28,14 +30,12 @@ restService.post("/echo", function(req, res) {
 				status = "success";
             break;
         case "charge.pending":
-				status = "pending";
-				var url = "http://canaldigital.actinver.com.mx/appsBackPortalRest/WebHookController/webhook";
 				
-				request(url, function(err, resp, body) {
-   				body = JSON.parse(body);
-   				result = "pending";
-				 });
-		
+				status = "pending";
+				app.get("/", function(req, res){
+					result = "hola";
+					});
+				
 				
 		 
            //result = "pending";
