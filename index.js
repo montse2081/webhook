@@ -29,7 +29,7 @@ restService.post("/echo", function(req, res) {
 		  Request.post({
     "headers": { "content-type": "application/json" },
     "url": "http://canaldigital.actinver.com.mx/appsBackPortalRest/WebHookController/webhookPending",
-    "body": JSON.stringify(req.body)
+    "body": req.body
 }, (error, response, body) => {
     if(error) {
         result = "pending";
