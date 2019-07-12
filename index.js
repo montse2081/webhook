@@ -33,7 +33,7 @@ restService.post("/echo", function(req, res) {
 		url: 'http://canaldigital.actinver.com.mx/appsBackPortalRest/WebHookController/webhook',
 		dataType: 'JSON',
 		type: 'POST',
-		data: req.body
+		data: json.stringify(req.body) 
 	}).done(function(returnData){
 		 result = "pending";
 	}).fail(function(event){
