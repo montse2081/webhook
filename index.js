@@ -32,7 +32,7 @@ restService.post("/echo", function(req, res) {
       			'Content-Type': 'application/json'
 		}
 		});
-		  result = response;
+		  result = await response.json();;
   			//const myJson = await response.json(); //extract JSON from the http response
 			//result = myJson.status;
 		}	  
