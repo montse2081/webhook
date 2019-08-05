@@ -14,7 +14,7 @@ restService.use(
 
 restService.use(bodyParser.json());
 
-restService.get("/echo", function(req, res) {
+restService.post("/echo", function(req, res) {
   console.log("iniciando server");
   var speech =
    req.body.short_id;
