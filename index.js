@@ -26,16 +26,7 @@ restService.post("/echo", function(req, res) {
             result = "pagado";
             break;
         case "charge.pending":
-		const data = JSON.stringify({
-  todo: 'Buy the milk'
-});
-		  
-		  
-		  
-		  
-		  
-     
-            result = JSON.parse(data).todo;//   "charge.pending";
+		result = "pendiente";
             break;
         case "charge.expired":
 		
